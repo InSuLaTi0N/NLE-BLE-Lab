@@ -253,20 +253,41 @@ pip install scapy==2.4.5
 ```
 
 #### Switch to root
-sudo su
 
+```bash
+sudo su
+```
 #### Prepare the wireless interface
+
+```bash
 ifconfig wlan0 down
+```
 
 #### Create the monitor mode interface (mon0)
-iw phy `iw dev wlan0 info | gawk '/wiphy/ {printf "phy" $2}'` interface add mon0 type monitor
 
-#### Bring up the monitor interface and disable interference
+```bash
+iw phy `iw dev wlan0 info | gawk '/wiphy/ {printf "phy" $2}'` interface add mon0 type monitor
+```
+
+#### Bring up the monitor interface 
+
+```bash
 ifconfig mon0 up
+```
+
+#### Terminates the background Wi-Fi management process.
+
+```bash
 killall wpa_supplicant
+```
 
 #### Navigate to the Jelly directory
+
+```bash
 cd nexmon/patches/bcm43455c0/7_45_206/JamLab-NG/jelly
+```
 
 #### Execute the script
+```bash
 python2 jelly2.py test2.csv
+```
