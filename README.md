@@ -252,8 +252,21 @@ git clone https://github.com/TuGraz-ITI/JamLab-NG.git
 pip install scapy==2.4.5
 ```
 
-#### Install wlan0
+#### Switch to root
+sudo su
 
-```bash
-pip install scapy==2.4.5
-```
+#### Prepare the wireless interface
+ifconfig wlan0 down
+
+#### Create the monitor mode interface (mon0)
+iw phy `iw dev wlan0 info | gawk '/wiphy/ {printf "phy" $2}'` interface add mon0 type monitor
+
+#### Bring up the monitor interface and disable interference
+ifconfig mon0 up
+killall wpa_supplicant
+
+#### Navigate to the Jelly directory
+cd nexmon/patches/bcm43455c0/7_45_206/JamLab-NG/jelly
+
+#### Execute the script
+python2 jelly2.py test2.csv
