@@ -252,3 +252,8 @@ git clone https://github.com/TuGraz-ITI/JamLab-NG.git
 pip install scapy==2.4.5
 ```
 
+#### Install wlan0
+
+```bash
+pip install scapy==2.4.5
+```
