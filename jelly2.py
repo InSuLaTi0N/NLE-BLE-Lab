@@ -5,6 +5,8 @@ import sys
 import time
 import struct
 import os  # Required to execute system commands for channel switching
+import threading
+import select
 
 # Interface Configuration
 # Ensure 'mon0' is up and running before starting this script
@@ -12,6 +14,8 @@ s = conf.L2socket(iface="mon0")
 prep = None
 js = None
 nextjs = None
+
+stop_flag = False
 
 # Generate random payload for the packet
 bytelist = [random.randint(-128, 127) for _ in range(1526)]
@@ -22,6 +26,16 @@ JamSetting = namedtuple("JamSetting", "timestamp channel power period length")
 
 def get_ip_address():
     return "127.0.0.1"
+
+def listen_for_enter():
+    global stop_flag
+    print "[*] Press ENTER to stop the program..."
+    try:
+        raw_input()
+        stop_flag = True
+        print "\n[!] ENTER pressed. Stopping..."
+    except:
+        pass
 
 def update(js):
     """
@@ -66,12 +80,16 @@ def update(js):
 # Main Execution Loop
 start = None
 
+enter_thread = threading.Thread(target=listen_for_enter)
+enter_thread.daemon = True
+enter_thread.start()
+
 # Open the CSV file provided as an argument
 with open(sys.argv[1], mode="r") as csvfile:
     reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC)
     start = time.time()
     
-    while True:
+    while not stop_flag:
         # Initialize the first setting
         if nextjs is None:
             try:
@@ -92,7 +110,7 @@ with open(sys.argv[1], mode="r") as csvfile:
             nextjs = None
 
         # Inner loop: Send packets until it is time to switch to the next setting
-        while True:
+        while not stop_flag:
             # Check if it is time to switch to the next configuration
             # Note: Removed '/1e9'. Assumes CSV timestamp is in SECONDS.
             if (nextjs is not None) and (time.time() > (start + nextjs.timestamp)):
@@ -106,3 +124,5 @@ with open(sys.argv[1], mode="r") as csvfile:
             # Sleep between packets (Period is in milliseconds in CSV)
             if js.period > 0:
                 time.sleep(js.period / 1000.0)
+
+print "[*] Program terminated."
