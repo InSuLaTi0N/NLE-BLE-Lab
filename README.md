@@ -8,7 +8,7 @@ The interference generation is primarily based on **Nexmon** and **JamLab**. For
 
 This repository focuses on:
 - WiFi firmware updates for Raspberry Pi 3B+
-- Detailed steps for interference generation
+- Detailed steps for jamming generation
 
 The goal is to help beginners use Nexmon for jamming more easily while avoiding common bad gates.
 
@@ -131,6 +131,7 @@ cd buildtools/isl-0.10
 make
 make install
 ln -s /usr/local/lib/libisl.so /usr/lib/arm-linux-gnueabihf/libisl.so.10
+cd ../..
 ```
 
 If `libmpfr.so.4` does not exist, compile it from source:
@@ -142,12 +143,12 @@ autoreconf -f -i
 make
 make install
 ln -s /usr/local/lib/libmpfr.so /usr/lib/arm-linux-gnueabihf/libmpfr.so.4
+cd ../..
 ```
 
 #### Navigate back to the Nexmon root directory and set up the environment:
 
 ```bash
-cd ../..
 source setup_env.sh
 make
 ```
@@ -207,7 +208,13 @@ make install-firmware
 
 #### Install nexutil
 
-From the root directory of nexmon switch to the nexutil folder: cd ~/nexmon/utilities/nexutil/. Compile and install nexutil: 
+From the root directory of nexmon switch to the nexutil folder: 
+
+```bash
+cd /home/pi/nexmon/utilities/nexutil/
+```
+
+ Compile and install nexutil: 
 
 ```bash
 make && make install
@@ -238,12 +245,15 @@ reboot
 ```
 The new driver should be loaded by default after reboot. 
 
-### 4. Install JamLab
+### 4. Configure Jelly
+
+The JamLab repository primarily supports the Raspberry Pi 3B model. However, the **Jelly** component is exactly what we need for WiFi signal interference, as it helps generate continuous channel occupation. Therefore, we decided to extract from this repository and modify to use it partially. We look forward to the day when we can fully explore JamLab and adapt it to the Raspberry Pi 3B+.
 
 #### Clone the Repository
 
 ```bash
-git clone https://github.com/TuGraz-ITI/JamLab-NG.git
+cd /home/pi/nexmon/patches/bcm43455c0/7_45_206
+git clone https://github.com/InSuLaTi0N/NLE-BLE-Lab.git
 ```
 
 #### Install Scapy
@@ -251,6 +261,13 @@ git clone https://github.com/TuGraz-ITI/JamLab-NG.git
 ```bash
 pip install scapy==2.4.5
 ```
+
+**Note**: We specify version 2.4.5 because we primarily use Python 2. Since Python 2 is no longer maintained, the supported version of Scapy needs to be downgraded accordingly.
+
+### 5. Jammer Generation
+
+At this point, all preparation work has been completed.
+If you want a stable jamming launcher, please `reboot` your Raspberry Pi first. After each reboot, follow the steps below to enable the jamming module.
 
 #### Switch to root
 
@@ -284,10 +301,11 @@ killall wpa_supplicant
 #### Navigate to the Jelly directory
 
 ```bash
-cd nexmon/patches/bcm43455c0/7_45_206/JamLab-NG/jelly
+cd nexmon/patches/bcm43455c0/7_45_206/NLE-BLE-Lab
 ```
 
 #### Execute the script
+
 ```bash
 python2 jelly2.py test2.csv
 ```
