@@ -18,6 +18,20 @@ The goal is to help beginners use Nexmon for jamming more easily while avoiding 
 
 Based on multiple attempts and verifications by the author and other contributors, we have **simplified unnecessary steps from the original repository** and ensured a stable, reproducible workflow.
 
+### Quick Navigation
+
+> **Steps 1-4 are one-time initialization steps** — you only need to perform them once during the initial setup.
+>
+> **Step 5 is the repeatable step** — execute this each time you want to enable WiFi jamming mode on your Raspberry Pi 3B+ after a reboot.
+
+| Step | Description | Type |
+|:----:|-------------|:----:|
+| [Step 1](#1-install-raspberry-pi-os) | Install Raspberry Pi OS | One-time |
+| [Step 2](#2-update-software-sources--install-dependencies) | Update Software Sources & Install Dependencies | One-time |
+| [Step 3](#3-configure-nexmon) | Configure Nexmon | One-time |
+| [Step 4](#4-configure-jelly) | Configure Jelly | One-time |
+| [Step 5](#5-jammer-generation) | Jammer Generation | **Repeatable** |
+
 ---
 
 ## Installation Steps
