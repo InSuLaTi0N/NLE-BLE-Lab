@@ -289,7 +289,7 @@ run the provided setup script:
 
 ```bash
 chmod +x start_mon.sh 
-./init_mon0.sh
+./start_mon.sh 
 ```
 
 #### Switch to root
