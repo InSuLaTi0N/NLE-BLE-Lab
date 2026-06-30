@@ -283,33 +283,19 @@ pip install scapy==2.4.5
 At this point, all preparation work has been completed.
 If you want a stable jamming launcher, please `reboot` your Raspberry Pi first. After each reboot, follow the steps below to enable the jamming module.
 
+#### Initialize the monitor mode interface
+
+run the provided setup script:
+
+```bash
+chmod +x start_mon.sh 
+./init_mon0.sh
+```
+
 #### Switch to root
 
 ```bash
 sudo su
-```
-#### Prepare the wireless interface
-
-```bash
-ifconfig wlan0 down
-```
-
-#### Create the monitor mode interface (mon0)
-
-```bash
-iw phy `iw dev wlan0 info | gawk '/wiphy/ {printf "phy" $2}'` interface add mon0 type monitor
-```
-
-#### Bring up the monitor interface 
-
-```bash
-ifconfig mon0 up
-```
-
-#### Terminates the background Wi-Fi management process.
-
-```bash
-killall wpa_supplicant
 ```
 
 #### Navigate to the Jelly directory
@@ -321,5 +307,5 @@ cd nexmon/patches/bcm43455c0/7_45_206/NLE-BLE-Lab
 #### Execute the script
 
 ```bash
-python2 jelly2.py test2.csv
+python jell.py
 ```
