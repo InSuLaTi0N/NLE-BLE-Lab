@@ -57,7 +57,7 @@ https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2020-08-24/
 Please execute following steps on Windows 10/11 OS
 
 1. Download the `.zip` file above to your computer
-2. Open **Raspberry Pi Imager**
+2. Open **Raspberry Pi Imager**. You can find it in [Raspberry Pi](https://www.raspberrypi.com/)
 3. Select device: **Raspberry Pi 3B**
 4. Select OS: Click **"Use custom"**, then select the `.zip` file you just downloaded
 5. Select storage: Choose your SD card
