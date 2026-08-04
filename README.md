@@ -307,5 +307,5 @@ cd nexmon/patches/bcm43455c0/7_45_206/NLE-BLE-Lab
 #### Execute the script
 
 ```bash
-python jell.py
+python jelly.py
 ```
