@@ -54,6 +54,7 @@ https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2020-08-24/
 
 
 #### Flashing Steps
+Please execute following steps on Windows 10/11 OS
 
 1. Download the `.zip` file above to your computer
 2. Open **Raspberry Pi Imager**
