@@ -284,6 +284,8 @@ pip install scapy==2.4.5
 At this point, all preparation work has been completed.
 If you want a stable jamming launcher, please `reboot` your Raspberry Pi first. After each reboot, follow the steps below to enable the jamming module.
 
+#### Dynamic WiFi jammer
+
 #### Initialize the monitor mode interface
 
 run the provided setup script:
