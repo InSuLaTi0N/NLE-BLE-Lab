@@ -2,10 +2,6 @@
 
 This repository is a byproduct of the **NLE & BLE experiment**, aimed at generating continuous and controllable channel interference to evaluate BLE and SLE communication quality.
 
-The interference generation is primarily based on **Nexmon** and **JamLab**. For more detailed information, please visit:
-- [Nexmon](https://github.com/seemoo-lab/nexmon)
-- [JamLab](https://github.com/TuGraz-ITI/JamLab-NG)
-
 This repository focuses on:
 - WiFi firmware updates for Raspberry Pi 3B+
 - Detailed steps for jamming generation
@@ -37,7 +33,7 @@ Based on multiple attempts and verifications by the author and other contributor
 ## Installation Steps
 
 ### 1. Install Raspberry Pi OS
-**Note**: We highly recommand you to download the raspberry pi package under Windows OS. It's simpler to further flash the package into your micro SD card.
+> We highly recommand you to download the raspberry pi package under Windows OS. It's simpler to further flash the package into your micro SD card.
 
 #### Why Not Use rpi-update for Kernel Downgrade?
 
@@ -127,7 +123,8 @@ sudo apt install git libgmp3-dev gawk qpdf bison flex make autoconf libtool texi
 ```
 
 ### 3. Configure Nexmon
-
+Nexmon is a firmware patching framework that helps us enable monitor mode and channel hopping, which we need for 3B+.
+For more detailed information, please visit [Nexmon](https://github.com/seemoo-lab/nexmon)
 #### Clone the Repository
 
 ```bash
@@ -263,14 +260,12 @@ reboot
 ```
 The new driver should be loaded by default after reboot. 
 
-### 4. Configure Jelly
-
-The JamLab repository primarily supports the Raspberry Pi 3B model. However, the **Jelly** component is exactly what we need for WiFi signal interference, as it helps generate continuous channel occupation. Therefore, we decided to extract from this repository and modify to use it partially. We look forward to the day when we can fully explore JamLab and adapt it to the Raspberry Pi 3B+.
+### 4. Preperation for Jammer
 
 #### Clone the Repository
 
 ```bash
-cd /home/pi/nexmon/patches/bcm43455c0/7_45_206
+cd /home/pi
 git clone https://github.com/InSuLaTi0N/NLE-BLE-Lab.git
 ```
 
@@ -305,11 +300,11 @@ sudo su
 #### Navigate to the Jelly directory
 
 ```bash
-cd nexmon/patches/bcm43455c0/7_45_206/NLE-BLE-Lab
+cd NLE-BLE-Lab
 ```
 
 #### Execute the script
 
 ```bash
-python3 jelly.py
+python3 jammer.py
 ```
