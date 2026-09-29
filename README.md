@@ -274,10 +274,8 @@ git clone https://github.com/InSuLaTi0N/NLE-BLE-Lab.git
 #### Install Scapy
 
 ```bash
-pip install scapy==2.4.5
+pip install scapy
 ```
-
-**Note**: We specify version 2.4.5 because we primarily use Python 2. Since Python 2 is no longer maintained, the supported version of Scapy needs to be downgraded accordingly.
 
 ### 5. Jammer Generation
 
@@ -310,5 +308,5 @@ cd nexmon/patches/bcm43455c0/7_45_206/NLE-BLE-Lab
 #### Execute the script
 
 ```bash
-python jelly.py
+python3 jelly.py
 ```
