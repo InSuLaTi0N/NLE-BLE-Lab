@@ -37,6 +37,7 @@ Based on multiple attempts and verifications by the author and other contributor
 ## Installation Steps
 
 ### 1. Install Raspberry Pi OS
+**Note**: We highly recommand you to download the raspberry pi package under Windows OS. It's simpler to further flash the package into your micro SD card.
 
 #### Why Not Use rpi-update for Kernel Downgrade?
 
@@ -62,6 +63,8 @@ Please execute following steps on Windows 10/11 OS
 4. Select OS: Click **"Use custom"**, then select the `.zip` file you just downloaded
 5. Select storage: Choose your SD card
 6. Click **"Write"** to start flashing
+
+After above steps, you can already launch your raspberry pi device.
 
 ---
 
@@ -171,7 +174,7 @@ make
 #### Select the Firmware Patch
 
 Since we are using the Raspberry Pi 3B+, the corresponding WiFi firmware is bcm43455c0. We select the 7_45_206 patch for this firmware. For information about different patches, please refer to the [Nexmon documentation](https://github.com/seemoo-lab/nexmon).
-
+** Note **
 ```bash
 cd patches/bcm43455c0/7_45_206/nexmon/
 ```
