@@ -297,7 +297,7 @@ chmod +x start_mon.sh
 sudo su
 ```
 
-#### Navigate to the Jelly directory
+#### Navigate to the Jammer directory
 
 ```bash
 cd NLE-BLE-Lab
