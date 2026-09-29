@@ -25,7 +25,7 @@ Based on multiple attempts and verifications by the author and other contributor
 | [Step 1](#1-install-raspberry-pi-os) | Install Raspberry Pi OS | One-time |
 | [Step 2](#2-update-software-sources--install-dependencies) | Update Software Sources & Install Dependencies | One-time |
 | [Step 3](#3-configure-nexmon) | Configure Nexmon | One-time |
-| [Step 4](#4-configure-jelly) | Configure Jelly | One-time |
+| [Step 4](#4-preperation-for-jammer) | Preperation for Jammer | One-time |
 | [Step 5](#5-jammer-generation) | Jammer Generation | **Repeatable** |
 
 ---
