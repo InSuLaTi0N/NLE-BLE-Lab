@@ -19,6 +19,7 @@ sudo ifconfig mon0 up
 sudo ifconfig mon0 txqueuelen 3000
 
 echo "[*] 6. Setting the initial Wi-Fi channel (e.g., channel 1)..."
+sudo iw dev mon0 power_save off
 sudo iw dev mon0 set channel 1
 
 echo "[+] Nexmon mon0 initialization completed!"
