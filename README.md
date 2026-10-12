@@ -113,6 +113,7 @@ After updating, we can install the dependencies. First, install the kernel heade
 
 ```bash
 wget http://archive.raspberrypi.org/debian/pool/main/r/raspberrypi-firmware/raspberrypi-kernel-headers_1.20200819-1_armhf.deb
+
 sudo dpkg -i raspberrypi-kernel-headers_1.20200819-1_armhf.deb
 ```
 
@@ -129,6 +130,7 @@ For more detailed information, please visit [Nexmon](https://github.com/seemoo-l
 
 ```bash
 git clone https://github.com/seemoo-lab/nexmon.git
+sudo su
 cd nexmon
 ```
 
@@ -170,10 +172,9 @@ make
 
 #### Select the Firmware Patch
 
-Since we are using the Raspberry Pi 3B+, the corresponding WiFi firmware is bcm43455c0. We select the 7_45_206 patch for this firmware. For information about different patches, please refer to the [Nexmon documentation](https://github.com/seemoo-lab/nexmon).
-** Note **
+Since we are using the Raspberry Pi 3B+, the corresponding WiFi firmware is bcm43455c0. We select the 7_45_189 patch for this firmware. For information about different patches, please refer to the [Nexmon documentation](https://github.com/seemoo-lab/nexmon).
 ```bash
-cd patches/bcm43455c0/7_45_206/nexmon/
+cd patches/bcm43455c0/7_45_189/nexmon/
 ```
 
 #### Compile the Firmware Patch
@@ -187,24 +188,25 @@ If you encounter errors such as:
 - Redefinition of `brcmf_debugfs_add_entry`
 - Redefinition of `brcmf_debug_create_memdump`
 
-This indicates that functions in `debug.c` conflict with the header files. To resolve this, you need to comment out the duplicate function definitions:
+This indicates that functions in `debug.c` conflict with the header files. To resolve this, you need to add debug condition to the duplicate function definitions:
 
 ```bash
 cd ../../../driver/brcmfmac_5.4.y-nexmon
 nano debug.c
 ```
 
-Comment out the following three functions in `debug.c`:
+Add `#ifdef DEBUG` before the following three functions in `debug.c`:
 - `brcmf_debug_create_memdump`
 - `brcmf_debugfs_get_devdir`
 - `brcmf_debugfs_add_entry`
+And add `#endif` at the end of functions
 
 Save the file with `Ctrl + O` and exit with `Ctrl + X`.
 
 Then return to the Nexmon patch directory and rebuild:
 
 ```bash
-cd ../../bcm43455c0/7_45_206/nexmon/
+cd ../../bcm43455c0/7_45_189/nexmon/
 make clean
 make
 ```
@@ -272,7 +274,7 @@ git clone https://github.com/InSuLaTi0N/NLE-BLE-Lab.git
 #### Install Scapy
 
 ```bash
-pip install scapy
+pip3 install scapy==2.5.0
 ```
 
 ### 5. Jammer Generation
