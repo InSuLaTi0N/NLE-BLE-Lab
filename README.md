@@ -120,7 +120,7 @@ sudo dpkg -i raspberrypi-kernel-headers_1.20200819-1_armhf.deb
 Then install the remaining dependencies:
 
 ```bash
-sudo apt install git libgmp3-dev gawk qpdf bison flex make autoconf libtool texinfo
+sudo apt install git libgmp3-dev gawk qpdf bison flex make autoconf libtool texinfo aircrack-ng
 ```
 
 ### 3. Configure Nexmon
